@@ -147,6 +147,12 @@ if (!window['django_select2']) {
 			if (!data) {
 				e.val(null); // Nulling out set value so as not to confuse users.
 			}
+			// if there is data-locked attribute on e then insert it in the data
+			if(!!e.attr('data-locked') && e.attr('data-locked').split(",").length==data.length) {
+				jQuery(e.attr('data-locked').split(",")).each(function (index) {
+					data[index].locked = !!parseInt(this);
+				});
+			}
 			callback(data); // Change for 2.3.x
 			django_select2.updateText(e);
 		},
