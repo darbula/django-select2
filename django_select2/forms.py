@@ -118,7 +118,7 @@ class Select2TagMixin(object):
         """Add select2's tag attributes."""
         self.attrs.setdefault('data-minimum-input-length', 1)
         self.attrs.setdefault('data-tags', 'true')
-        self.attrs.setdefault('data-token-separators', [",", " "])
+        self.attrs.setdefault('data-token-separators', '[",", " "]')
         return super(Select2TagMixin, self).build_attrs(extra_attrs, **kwargs)
 
 
@@ -262,14 +262,14 @@ class HeavySelect2Widget(HeavySelect2Mixin, Select2Widget):
 
     Usage example::
 
-        class MyWidget(HeavySelectWidget):
+        class MyWidget(HeavySelect2Widget):
             data_view = 'my_view_name'
 
     or::
 
         class MyForm(forms.Form):
             my_field = forms.ChoicesField(
-                widget=HeavySelectWidget(
+                widget=HeavySelect2Widget(
                     data_url='/url/to/json/response'
                 )
             )
